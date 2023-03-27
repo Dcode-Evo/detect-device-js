@@ -1,0 +1,30 @@
+{
+  "name": "@dcode-evo/detect-device",
+  "version": "1.0.0",
+  "description": "Detect device type in JS",
+  "scripts": {
+    "build": "tsc && npm run copy-scss",
+    "copy-scss": "cp src/detect-device-helpers.scss lib/",
+    "copy-pckg": "cp package.json lib/"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dcode-Evo/detect-device-js.git",
+    "directory": "@dcode-evo/detect-device-js"
+  },
+  "author": "alekart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dcode-Evo/detect-device-js/issues"
+  },
+  "homepage": "https://github.com/Dcode-Evo/detect-device-js#readme",
+  "dependencies": {
+    "mobile-detect": "^1.4.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  }
+}
