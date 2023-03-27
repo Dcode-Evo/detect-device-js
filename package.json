@@ -1,11 +1,12 @@
 {
-  "name": "@dcode-evo/detect-device",
+  "name": "@dcode-evo/detect-device-js",
   "version": "1.0.0",
   "description": "Detect device type in JS",
   "scripts": {
     "build": "tsc && npm run copy-scss && npm run copy-pckg",
     "copy-scss": "cp src/detect-device-helpers.scss lib/",
-    "copy-pckg": "cp package.json lib/"
+    "copy-pckg": "cp package.json lib/",
+    "publish": "npm run build && cd ./lib && npm publish && cd .."
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
