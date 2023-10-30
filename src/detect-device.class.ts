@@ -1,8 +1,10 @@
 import * as MobileDetect from 'mobile-detect';
 
-const md = new MobileDetect(window.navigator.userAgent);
+const md = new MobileDetect(typeof window !== 'undefined' ? window?.navigator?.userAgent : '');
 
-export class Device {
+export default class Device {
+  static window: Window & typeof globalThis = typeof window !== 'undefined' ? window : {} as any;
+  static document: Document = typeof document !== 'undefined' ? document : {} as Document;
   /**
    * The viewport of an iPad Pro 12" is 1024 x 1366
    */
@@ -26,7 +28,7 @@ export class Device {
    * but also some PCs, so this is not an exact "mobile" device detection.
    */
   static isTouchScreen(): boolean {
-    return navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+    return Device.window.navigator?.maxTouchPoints > 0 || 'ontouchstart' in Device.window;
   }
 
   /**
@@ -46,7 +48,7 @@ export class Device {
    */
   static isTablet(): boolean {
     return !!md.tablet()
-      || (!Device.isPhone() && Device.isTouchScreen() && window.innerWidth <= Device.maxTabletWidth);
+      || (!Device.isPhone() && Device.isTouchScreen() && Device.window.innerWidth <= Device.maxTabletWidth);
   }
 
   /**
@@ -71,27 +73,27 @@ export class Device {
 
   static addBodyClasses() {
     if (Device.isTouchScreen()) {
-      document.body.classList.add('touchscreen');
+      Device.document.body?.classList.add('touchscreen');
     }
 
     if (Device.isAndroid()) {
-      document.body.classList.add('android');
+      Device.document.body?.classList.add('android');
     }
 
     if (Device.isIOs()) {
-      document.body.classList.add('ios');
+      Device.document.body?.classList.add('ios');
     }
 
     if (Device.isPhone()) {
-      document.body.classList.add('phone');
+      Device.document.body?.classList.add('phone');
     }
 
     if (Device.isTablet()) {
-      document.body.classList.add('tablet');
+      Device.document.body?.classList.add('tablet');
     }
 
     if (Device.isDesktop()) {
-      document.body.classList.add('desktop');
+      Device.document.body?.classList.add('desktop');
     }
   }
 }
